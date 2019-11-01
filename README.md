@@ -1,25 +1,19 @@
-# Week 8 Assignment - Survival Shooter
+# Week 9 Assignment - Survival Shooter
 # Game and Simulation II
 
-## Game Feel Elements Added
+Using the Game Maker's Toolkit video, and the SpelunkyGen website as guides, you are to turn your Survival Shooter game into a procedurally-generated (sort of) dungeon crawler.
 
-Camera Shake 
-	- Used an animator, much like your example.
+You'll set this up similarly to how Spelunky works - by generating a "solution path", then filling the rooms (ignore the "snake pit" concept).
 
-Player Dust Trail 
-	- Particle system, and added two lines of code to the 'Move' function inside the PlayerMovement script.
+This assignment is probably best divided into 3 steps:
 
-Enemy Flash 
-	- Created two functions - 'EnemyFlash' and 'ResetMaterial' - in the EnemyHealth script.
+Generating the solution path (70%): My advice here is to build a 2-dimensional array, and first fill that in with the appropriate room types. To test this, you can use my already existing "CreateRoom" function. This takes 3 integer values - row, column, and room type - to place an instance of a room at a given position in the grid.
 
-Enemy Hit Stop 
-	- Created a TimeManager script with a function called 'SlowTime'. I called that function in the 'Death' function inside EnemyHealth script.
+NOTE: One change I've made from the guide is that I have a 'type 4' room - one that's open on all sides. In the guide, they consider this combination a 'type 2' room.
 
-Dramatic Camera Zoom
-	- Used animation much like Camera Shake as I created a new Clip called CameraZoom. A trigger called "Dead" is used to play it, and it is called inside the 'Death' function in the PlayerHealth script.
+Adding the side rooms (20%):
+For the side rooms (which aren't part of the solution path, and are not guaranteed to have any entrances/exists, you'll want to have, at the very least, an option to spawn a '0' room, with no exits. You should balance this though, as a map with only a linear path would be boring!
 
-Heartbeat 
-	- Couldn't find a good heartbeat sound effect, so I used a beeper sound instead.
+Blocking the corners (10%): Once you've gotten the solution path and side rooms working correctly, ensure that the player can't leave the map through the corner rooms. For instance, ensure that the top left corner room doesn't have an open path left or above.
 
-Enemy Health Bar
-	- The circle under the enemies was done much like your example, but I created an EnemyHealthBar script to update the healthbar.
+Next week we'll be going further with this project by adding a loot and inventory system!
