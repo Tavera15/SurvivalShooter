@@ -6,16 +6,16 @@
 Controls
 
 Player 1
-Move: WASD Keys
-Rotate Left: G
-Rotate Right: J
-Shoot:: H
+Move: WASD Keys,
+Rotate Left: G,
+Rotate Right: J,
+Shoot:: H,
 
 Player 2
-Move: Arrow Keys
-Rotate Left: l
-Rotate Right: '
-Shoot:: ;
+Move: Arrow Keys,
+Rotate Left: L,
+Rotate Right: ',
+Shoot:: ;,
 
 ----
 
