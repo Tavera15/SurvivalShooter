@@ -18,6 +18,17 @@ public class EnemyManager : MonoBehaviour
 
     void Spawn()
     {
+        var players = PlayerManager.instance.players;
+        playerHealth = null;
+
+        for (int i = 0; i < players.Length; i++)
+        {
+            if (!players[i].GetComponent<PlayerHealth>().isDead)
+                playerHealth = players[i].GetComponent<PlayerHealth>();
+        }
+
+        if (!playerHealth) { return; }
+
         // If the player has no health left...
         if (playerHealth.currentHealth <= 0f)
         {

@@ -2,10 +2,9 @@
 
 public class GameOverManager : MonoBehaviour
 {
-    public PlayerHealth playerHealth;       // Reference to the player's health.
+    public PlayerHealth[] players;          // Reference to the players' health.
 
     Animator anim;                          // Reference to the animator component.
-
 
     void Awake()
     {
@@ -16,8 +15,7 @@ public class GameOverManager : MonoBehaviour
 
     void Update()
     {
-        // If the player has run out of health...
-        if (playerHealth.currentHealth <= 0)
+        if(isEveryoneDead())
         {
             TimeManager.instance.SlowTime(.3f);
 
@@ -25,5 +23,14 @@ public class GameOverManager : MonoBehaviour
             anim.SetTrigger("GameOver");
         }
 
+    }
+
+    bool isEveryoneDead()
+    {
+        for (int i = 0; i < players.Length; i++)
+            if (!players[i].GetComponent<PlayerHealth>().isDead)
+                return false;
+
+        return true;
     }
 }

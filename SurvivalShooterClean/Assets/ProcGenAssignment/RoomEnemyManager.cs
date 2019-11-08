@@ -3,15 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class RoomEnemyManager : MonoBehaviour {
-
+    Transform[] players;
     public PlayerHealth playerHealth;       // Reference to the player's heatlh.
     public GameObject enemy;                // The enemy prefab to be spawned.
     public float spawnTime = 3f;            // How long between each spawn.
     public float distance = 15;             // How close the player needs to be to activate.
 
     void Start () {
-        playerHealth = GameObject.Find("Player").GetComponent<PlayerHealth>();
-
+        players = PlayerManager.instance.players;
         InvokeRepeating("Spawn", spawnTime, spawnTime);
     }
 	
@@ -22,6 +21,16 @@ public class RoomEnemyManager : MonoBehaviour {
 
     void Spawn()
     {
+        playerHealth = null;
+
+        for(int i = 0; i < players.Length;i++)
+        {
+            if (!players[i].GetComponent<PlayerHealth>().isDead)
+                playerHealth = players[i].GetComponent<PlayerHealth>();
+        }
+
+        if (!playerHealth) { return; }
+
         // If the player has no health left...
         if (playerHealth.currentHealth <= 0f)
         {

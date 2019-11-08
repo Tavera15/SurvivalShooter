@@ -6,7 +6,7 @@ public class PlayerShooting : MonoBehaviour
     public float timeBetweenBullets = 0.15f;        // The time between each shot.
     public float range = 100f;                      // The distance the gun can fire.
     public Transform gunBarrelEnd;
-    
+    public int playerScore = 0;
 
     float timer;                                    // A timer to determine when to fire.
     Ray shootRay;                                   // A ray from the gun end forwards.
@@ -41,7 +41,8 @@ public class PlayerShooting : MonoBehaviour
 
 #if !MOBILE_INPUT
         // If the Fire1 button is being press and it's time to fire...
-        if (Input.GetButton("Fire1") && timer >= timeBetweenBullets && Time.timeScale != 0)
+        string playerShootAxis = "Shoot_P" + GetComponent<PlayerMovement>().playerIndex;
+        if (Input.GetButton(playerShootAxis) && timer >= timeBetweenBullets && Time.timeScale != 0)
         {
             // ... shoot the gun.
             Shoot();
@@ -107,6 +108,9 @@ public class PlayerShooting : MonoBehaviour
             {
                 // ... the enemy should take damage.
                 enemyHealth.TakeDamage(damagePerShot, shootHit.point);
+
+                if (enemyHealth.currentHealth <= 0)
+                    playerScore += shootHit.collider.GetComponent<EnemyHealth>().scoreValue;
             }
 
             // Set the second position of the line renderer to the point the raycast hit.

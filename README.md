@@ -1,19 +1,51 @@
-# Week 9 Assignment - Survival Shooter
+# Week 10 Assignment - Survival Shooter
 # Game and Simulation II
 
-Using the Game Maker's Toolkit video, and the SpelunkyGen website as guides, you are to turn your Survival Shooter game into a procedurally-generated (sort of) dungeon crawler.
+----
 
-You'll set this up similarly to how Spelunky works - by generating a "solution path", then filling the rooms (ignore the "snake pit" concept).
+Controls
 
-This assignment is probably best divided into 3 steps:
+Player 1
+Move: WASD Keys
+Rotate Left: G
+Rotate Right: J
+Shoot:: H
 
-Generating the solution path (70%): My advice here is to build a 2-dimensional array, and first fill that in with the appropriate room types. To test this, you can use my already existing "CreateRoom" function. This takes 3 integer values - row, column, and room type - to place an instance of a room at a given position in the grid.
+Player 2
+Move: Arrow Keys
+Rotate Left: l
+Rotate Right: '
+Shoot:: ;
 
-NOTE: One change I've made from the guide is that I have a 'type 4' room - one that's open on all sides. In the guide, they consider this combination a 'type 2' room.
+----
 
-Adding the side rooms (20%):
-For the side rooms (which aren't part of the solution path, and are not guaranteed to have any entrances/exists, you'll want to have, at the very least, an option to spawn a '0' room, with no exits. You should balance this though, as a map with only a linear path would be boring!
+Your assignment this week is to add 2-Player, local-multiplayer to the Survival Shooter game (what's a good dungeon crawler without multiplayer?). You can use your version of the project you've been working on, or the original, clean version (look under Week 8) for this assignment.
 
-Blocking the corners (10%): Once you've gotten the solution path and side rooms working correctly, ensure that the player can't leave the map through the corner rooms. For instance, ensure that the top left corner room doesn't have an open path left or above.
+The multiplayer functionality will be both cooperative and competitive. Players will work together to defeat enemies, and cannot damage each other. However, each player will also have their own score. The game will only end when both players have been defeated, and the winner is the one with the highest score.
 
-Next week we'll be going further with this project by adding a loot and inventory system!
+Some adjustments you'll need to make:
+
+Controls
+
+Adjust the controls of the game to accommodate both players. Keep in mind that you don't necessarily have to use the mouse to aim and shoot.
+
+Enemies
+
+Enemies should target the player closest to them. Make sure they don't only target Player 1.
+
+UI
+
+Ensure that Player 2's health and score are displayed on screen.
+
+Camera
+
+You have 2 options for the camera view:
+
+A traditional "split-screen" view
+A "Smash Bros." style view that scales to show all players
+Optional Bonus Challenges:
+
+Add Friendly Fire, where players can damage each other
+Make the multiplayer "drop in, drop out" where a second player can join or leave the game at any time (make sure the UI accounts for this)
+Add support for up to 4 players
+Make the different players have different stats - for example, make Player 2 have less health, but fire faster

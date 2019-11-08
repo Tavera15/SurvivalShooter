@@ -86,7 +86,7 @@ public class EnemyHealth : MonoBehaviour
             Death();
         }
 
-        // This will trigger the 
+        // This will trigger the material flashing animation
         lastHit = 0;
     }
 
@@ -122,7 +122,7 @@ public class EnemyHealth : MonoBehaviour
         isSinking = true;
 
         // Increase the score by the enemy's score value.
-        ScoreManager.score += scoreValue;
+        // ScoreManager.score += scoreValue;
 
         // After 2 seconds destory the enemy.
         Destroy(gameObject, 2f);

@@ -3,9 +3,11 @@
 
 public class PlayerMovement : MonoBehaviour
 {
+    private float yaw = 0;
     public float speed = 6f;            // The speed that the player will move at.
+    public int RotateSpeed = 2;
     public ParticleSystem dust;
-
+    public int playerIndex;
     Vector3 movement;                   // The vector to store the direction of the player's movement.
     Animator anim;                      // Reference to the animator component.
     Rigidbody playerRigidbody;          // Reference to the player's rigidbody.
@@ -30,14 +32,15 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         // Store the input axes.
-        float h = Input.GetAxisRaw("Horizontal");
-        float v = Input.GetAxisRaw("Vertical");
+        float h = Input.GetAxisRaw("HorizontalP" + playerIndex);
+        float v = Input.GetAxisRaw("VerticalP" + playerIndex);
 
         // Move the player around the scene.
         Move(h, v);
 
         // Turn the player to face the mouse cursor.
-        Turning();
+        //Turning();
+        MyTurning();
 
         // Animate the player.
         Animating(h, v);
@@ -59,6 +62,16 @@ public class PlayerMovement : MonoBehaviour
         {
             dust.Emit(1);
         } 
+    }
+
+    void MyTurning()
+    {
+        string playerAxis = "Rotate_P" + playerIndex;
+        float mouseXDelta = (Input.GetAxis(playerAxis) * RotateSpeed);
+        yaw += mouseXDelta;
+
+        transform.rotation = Quaternion.Euler(new Vector3(0, yaw, 0));
+        
     }
 
     void Turning()

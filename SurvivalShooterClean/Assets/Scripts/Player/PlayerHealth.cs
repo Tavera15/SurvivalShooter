@@ -21,7 +21,7 @@ public class PlayerHealth : MonoBehaviour
     AudioSource playerAudio;                                    // Reference to the AudioSource component.
     PlayerMovement playerMovement;                              // Reference to the player's movement.
     PlayerShooting playerShooting;                              // Reference to the PlayerShooting script.
-    bool isDead;                                                // Whether the player is dead.
+    public bool isDead;                                         // Whether the player is dead.
     bool damaged;                                               // True when the player gets damaged.
 
 
@@ -112,11 +112,18 @@ public class PlayerHealth : MonoBehaviour
 
     }
 
-
+    
     public void RestartLevel()
     {
         // Reload the level that is currently loaded.
         //Application.LoadLevel (Application.loadedLevel);
+        var allPlayers = PlayerManager.instance.players;
+
+        for (int i = 0; i < allPlayers.Length; i++)
+            if (!allPlayers[i].GetComponent<PlayerHealth>().isDead)
+                return;
+
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
+    
 }
